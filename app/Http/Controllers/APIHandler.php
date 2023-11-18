@@ -75,7 +75,7 @@ return json as an answer in the following format:
         //a brief explanation of the suggestion in arabic
         explanation: string;
     };
-    //using explisitly the word '$word', reformat the provided context (keep the same meaning but rephrase it)
+    //using explicitly the word '$word', reformat the provided context (keep the same meaning but rephrase it)
     reformattedContext: string;
 }"
                 ],
