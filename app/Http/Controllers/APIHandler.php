@@ -53,22 +53,13 @@ class APIHandler extends Controller
 
         $extra = $request->extra == 1;
 
-        $analysisExtra = !$extra ? '' : ",
-        \"explanation\": \"In-depth linguistic analysis of the meaning. the explanation should be in Arabic\"
-        ";
-        $suggestionExtra = !$extra ? '' : ",
-\"suggestion\": {
-    \"meaning\": \"Suggested meaning in Arabic based on linguistic expertise\",
-    \"explanation\": \"Detailed linguistic reasoning behind the suggestion. the explanation should be in Arabic\"
-}";
-        $reformattedContextExtra = !$extra ? '' : `,"reformattedContext": "Reformulated context maintaining linguistic precision and ensuring the word's unaltered use."`;
-
         $result = OpenAI::chat()->create([
             'model' => 'gpt-4-1106-preview',
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return a JSON response in the following format:
+                    'content' => !$extra ? "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return the number of the closest meaning if the percentage is above 50%. If the percentage is below 50%, return null."
+                        : "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return a JSON response in the following format:
 
                         ```json
                         {
@@ -76,12 +67,15 @@ class APIHandler extends Controller
                                 // array of meanings
                                 {
                                     \"meaningNumber\": meaningNumber,
-                                    \"percentage\": percentage
-                                    " . $analysisExtra . "
+                                    \"percentage\": percentage,
+                                    \"explanation\": \"In-depth linguistic analysis of the meaning. the explanation should be in Arabic\"
                                 }
-                            ]
-                            " . $suggestionExtra . "
-                            " . $reformattedContextExtra . "
+                            ],
+                            \"suggestion\": {
+                                \"meaning\": \"Suggested meaning in Arabic based on linguistic expertise\",
+                                \"explanation\": \"Detailed linguistic reasoning behind the suggestion. the explanation should be in Arabic\"
+                            },
+                            \"reformattedContext\": \"Reformulated context maintaining linguistic precision and ensuring the word's unaltered use\"
                         }
                         ```
                         "
@@ -99,7 +93,13 @@ class APIHandler extends Controller
             ],
         ]);
 
-        $ai = json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
+        $ai = !$extra ?
+            ['analysis' => [
+                [
+                    'meaningNumber' => 1,
+                ]
+            ]]
+            : json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
 
         return response()->json([
             'context' => $request->context,
