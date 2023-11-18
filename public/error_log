@@ -1,0 +1,7 @@
+[17-Nov-2023 14:46:00 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\APIHandler::getEntry() in /home/arhub/mo3jam-extension.gammacodes.com/app/Http/Controllers/APIHandler.php on line 52
+[17-Nov-2023 14:46:24 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\APIHandler::getEntry() in /home/arhub/mo3jam-extension.gammacodes.com/app/Http/Controllers/APIHandler.php on line 52
+[17-Nov-2023 14:46:25 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\APIHandler::getEntry() in /home/arhub/mo3jam-extension.gammacodes.com/app/Http/Controllers/APIHandler.php on line 52
+[17-Nov-2023 14:46:41 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\APIHandler::getEntry() in /home/arhub/mo3jam-extension.gammacodes.com/app/Http/Controllers/APIHandler.php on line 52
+[18-Nov-2023 12:23:49 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\APIHandler2::getEntry() in /home/arhub/mo3jam-extension.gammacodes.com/app/Http/Controllers/APIHandler.php on line 50
+[18-Nov-2023 12:24:07 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\APIHandler2::getEntry() in /home/arhub/mo3jam-extension.gammacodes.com/app/Http/Controllers/APIHandler.php on line 50
+[18-Nov-2023 12:24:25 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\APIHandler::getEntry() in /home/arhub/mo3jam-extension.gammacodes.com/app/Http/Controllers/APIHandler.php on line 50
