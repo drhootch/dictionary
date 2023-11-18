@@ -51,7 +51,7 @@ class APIHandler extends Controller
             ]);
         }
 
-        $extra = false;
+        $extra = $request->extra == 1;
 
         $analysisExtra = !$extra ? '' : ",
         \"explanation\": \"In-depth linguistic analysis of the meaning. the explanation should be in Arabic\"
