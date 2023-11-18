@@ -51,33 +51,40 @@ class APIHandler extends Controller
             ]);
         }
 
+        $extra = false;
+
+        $analysisExtra = !$extra ? '' : ",
+        \"explanation\": \"In-depth linguistic analysis of the meaning. the explanation should be in Arabic\"
+        ";
+        $suggestionExtra = !$extra ? '' : ",
+\"suggestion\": {
+    \"meaning\": \"Suggested meaning in Arabic based on linguistic expertise\",
+    \"explanation\": \"Detailed linguistic reasoning behind the suggestion. the explanation should be in Arabic\"
+}";
+        $reformattedContextExtra = !$extra ? '' : `,"reformattedContext": "Reformulated context maintaining linguistic precision and ensuring the word's unaltered use."`;
+
         $result = OpenAI::chat()->create([
             'model' => 'gpt-4-1106-preview',
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => "You will be provided with a word in arabic, and some of its meanings labeled by number, and a text which contains that word.
-return json as an answer in the following format:
-{
-    //an analysis of how close the meanings
-    analysis: {
-        //the number of the provided meaning
-        meaningNumber: number;
-        //the percentage of how close this meaning is to the provided context
-        percentage: number;
-        //a brief explanation in arabic
-        explanation: string;
-    }[];
-    //suggest a new meaning (different from the provided meanings) for the word in the provided context (make sure the suggested meaning is indeed a meaning of the word in arabic)
-    suggestion: {
-        //the suggested meaning in arabic
-        meaning: string;
-        //a brief explanation of the suggestion in arabic
-        explanation: string;
-    };
-    //reformat the provided context (keep the same meaning but rephrase it) and ensure using explicitly the word '$word' in the reformatted context
-    reformattedContext: string;
-}"
+                    'content' => "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return a JSON response in the following format:
+
+                        ```json
+                        {
+                            \"analysis\": [
+                                // array of meanings
+                                {
+                                    \"meaningNumber\": meaningNumber,
+                                    \"percentage\": percentage
+                                    " . $analysisExtra . "
+                                }
+                            ]
+                            " . $suggestionExtra . "
+                            " . $reformattedContextExtra . "
+                        }
+                        ```
+                        "
                 ],
                 [
                     'role' => 'user',
@@ -93,7 +100,6 @@ return json as an answer in the following format:
         ]);
 
         $ai = json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
-
 
         return response()->json([
             'context' => $request->context,
