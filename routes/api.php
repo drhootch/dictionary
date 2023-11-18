@@ -19,7 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('entry/process', 'App\Http\Controllers\APIHandler@processEntry');
+
+Route::any('entry/process', 'App\Http\Controllers\APIHandler@processEntry');
 
 Route::get('entry/get', 'App\Http\Controllers\APIHandler@getEntry');
 

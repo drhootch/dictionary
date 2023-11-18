@@ -14,28 +14,15 @@ use GuzzleHttp\Exception\RequestException;
 
 use Symfony\Component\DomCrawler\Crawler;
 
-/***************************************************************
- * Remarks
- * 
- * API Handler
- * This does not take in consideration compound words which are indeed found in the dictionary as in كتبة الوحي?
- * Of the limitations I noticed, words like سومح should redirect me to سامح being 
- * 
- * 
- */ 
- 
  
 class APIHandler extends Controller
 {
 
-    // Optionally lemmataziztion can also be done from the users browser
     public function processEntry(Request $request)
     {
-        $selectedEntries = [];
         $word = $this->lemmatize( $request->word )[0];
         
-        // As a prototype, cache is required for performance and to avoid any unexpected issues from the API
-		// if cached
+
         $entries = $this->exactSearch( $word );
 
         return response()->json( [
@@ -44,6 +31,7 @@ class APIHandler extends Controller
 			'entries' => $entries
 		]);
     }
+    
 
     public function getEntry(Request $request)
     {
