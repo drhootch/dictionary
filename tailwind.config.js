@@ -9,6 +9,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 tajawal: ['Tajawal'],
+                uthmanicHafs: ['UthmanicHafs'],
             },
         },
     },
