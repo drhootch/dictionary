@@ -43,6 +43,9 @@ class APIHandler extends Controller
             }
         }
 
+        //filter only $meanings that are not empty
+        $meanings = array_filter($meanings);
+
         if (count($meanings) === 0) {
             return response()->json([
                 'meanings' => [],
