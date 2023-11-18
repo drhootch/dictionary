@@ -14,11 +14,17 @@ use GuzzleHttp\Exception\RequestException;
 
 use Symfony\Component\DomCrawler\Crawler;
 
-//API Handler
-
-//Remark this does not take in consideration compound words which are indeed found in the dictionary as in كتبة الوحي?
-// Of the limitations I noticed, words like سومح should redirect me to سامح being 
-
+/***************************************************************
+ * Remarks
+ * 
+ * API Handler
+ * This does not take in consideration compound words which are indeed found in the dictionary as in كتبة الوحي?
+ * Of the limitations I noticed, words like سومح should redirect me to سامح being 
+ * 
+ * 
+ */ 
+ 
+ 
 class APIHandler extends Controller
 {
 
