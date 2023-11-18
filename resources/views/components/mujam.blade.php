@@ -6,7 +6,7 @@
     style="pointer-events: none; top:0; left: 0; right: 0; bottom: 0; position: absolute; z-index: 99999">
     <div xyz-data="riadh_app" xyz-on:click.outside="info={}" xyz-show="show"
         xyz-bind:style="`top:${info.bottom+4}px; left:${info.left-125}px`"
-        class="text-right pointer-events-auto transition-all absolute w-[250px] flex flex-col gap-2 items-end max-w-[15.44rem] mx-auto p-2.5 bg-white border-teal-600 border border-solid rounded-[0.63rem] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.3)]">
+        class="font-tajawal text-right pointer-events-auto transition-all absolute w-[250px] flex flex-col gap-2 items-end max-w-[15.44rem] mx-auto p-2.5 bg-white border-teal-600 border border-solid rounded-[0.63rem] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.3)]">
         <div class="flex  flex-row justify-between items-center w-full">
             <button class="flex flex-row gap-1.5 items-center">
                 <p class="block text-right text-teal-600 " xyz-text="info.word"></p>
