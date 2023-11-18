@@ -52,7 +52,7 @@ class APIHandler extends Controller
         }
 
         $result = OpenAI::chat()->create([
-            'model' => 'gpt-3.5-turbo-1106',
+            'model' => 'gpt-4-1106-preview',
             'messages' => [
                 [
                     'role' => 'system',
@@ -75,7 +75,7 @@ return json as an answer in the following format:
         //a brief explanation of the suggestion in arabic
         explanation: string;
     };
-    //using explicitly the word '$word', reformat the provided context (keep the same meaning but rephrase it)
+    //reformat the provided context (keep the same meaning but rephrase it) and ensure using explicitly the word '$word' in the reformatted context
     reformattedContext: string;
 }"
                 ],
@@ -92,7 +92,8 @@ return json as an answer in the following format:
             ],
         ]);
 
-        $ai = json_decode($result->choices[0]->message->content);
+        $ai = json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
+
 
         return response()->json([
             'context' => $request->context,
