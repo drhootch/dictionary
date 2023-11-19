@@ -59,12 +59,12 @@
                         تفصيل
                     </button>
                 </div>
-                <p class="block w-full text-sm text-green-800 "
+                <p class="block w-full text-md text-green-800 "
                     xyz-text="answer?.meanings?.[answer?.ai?.analysis?.[0].meaningNumber-1]">
                 </p>
                 <div class="flex flex-col w-full gap-1" xyz-show="showClosestDetails" xyz-collapse>
                     <p class="block text-xs text-neutral-500 ">تفصيل:</p>
-                    <p class="block w-full text-sm text-violet-800 " xyz-text="answer?.ai?.analysis?.[0].explanation">
+                    <p class="block w-full text-md text-violet-800 " xyz-text="answer?.ai?.analysis?.[0].explanation">
                     </p>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                 <p class="block w-full text-xs text-neutral-500 ">معاني أخرى:</p>
                 <template
                     xyz-for="meaning in answer?.meanings.filter((m,i)=>i!==answer?.ai?.analysis?.[0].meaningNumber-1)">
-                    <p class="block w-full text-sm text-black " xyz-text="'- '+meaning"></p>
+                    <p class="block w-full text-md text-black " xyz-text="'- '+meaning"></p>
                 </template>
             </div>
 
@@ -88,10 +88,10 @@
                         تفصيل
                     </button>
                 </div>
-                <p class="block w-full text-sm text-violet-800 " xyz-text="answer?.ai?.suggestion?.meaning"></p>
+                <p class="block w-full text-md text-violet-800 " xyz-text="answer?.ai?.suggestion?.meaning"></p>
                 <div class="flex flex-col w-full gap-1" xyz-show="showSuggestedDetails" xyz-collapse>
                     <p class="block text-xs text-neutral-500 ">تفصيل:</p>
-                    <p class="block w-full text-sm text-violet-800 " xyz-text="answer?.ai?.suggestion?.explanation">
+                    <p class="block w-full text-md text-violet-800 " xyz-text="answer?.ai?.suggestion?.explanation">
                     </p>
                 </div>
             </div>
