@@ -22,7 +22,7 @@
 
 <body class="antialiased font-tajawal bg-dots-darker bg-center bg-gray-100">
 
-    <div class="flex justify-between max-w-7xl mx-auto p-6 px-8 sm:items-center  selection:bg-yellow-500">
+    <div class="flex justify-between max-w-7xl mx-auto p-6 px-8 sm:items-center selection:bg-yellow-500">
 
         <div class="ml-4 text-center text-lg font-bold text-teal-600  sm:text-right sm:ml-0">
             مشروع رياض اللّغة
@@ -44,7 +44,7 @@
         </div>
 
     </div>
-    <div class="relative flex flex-col sm:justify-center sm:items-center selection:text-white">
+    <div class="relative flex flex-col sm:justify-center sm:items-center selection:bg-yellow-500">
 
         <div class="max-w-7xl mx-auto p-6 lg:p-8">
             <div class="mt-4 w-full text-right flex gap-2 items-center">
@@ -62,22 +62,22 @@
                     <div
                         class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent  rounded-lg shadow-2xl shadow-gray-500/20  flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-yellow-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
-                                إن في الجنة شجرة يستظل الراكب في ظلها مائة سنة واقرؤوا إن شئتم: {وَظِلٍّ مَمْدُودٍ}،
-                                ولقاب قوس أحدكم من الجنة خير مما طلعت عليه الشمس أو تغرب
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed text-justify">
+                                «إن في الجنة شجرة يستظل الراكب في ظلها مائة سنة واقرؤوا إن شئتم: {وَظِلٍّ مَمْدُودٍ}،
+                                ولقاب قوس أحدكم من الجنة خير مما طلعت عليه الشمس أو تغرب»
                             </p>
-                            <p class="text-gray-800  text-lg leading-relaxed text-left">
-                                - متفقٌ عليهِ -
+                            <p class="text-gray-800 font-semibold text-lg leading-relaxed text-left">
+                                - حديث النبي صلى الله عليه وسلم، متفقٌ عليهِ -
                             </p>
                         </div>
                     </div>
                     <div
                         class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent  rounded-lg shadow-2xl shadow-gray-500/20  flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-yellow-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
-                                عليكم بذكر الله تعالى فإنه دواء وإياكم وذكر الناس فإنه داء.
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed text-justify">
+                                «عليكم بذكر الله تعالى فإنه دواء وإياكم وذكر الناس فإنه داء.»
                             </p>
-                            <p class="text-gray-800  text-lg leading-relaxed text-left">
+                            <p class="text-gray-800 font-semibold text-lg leading-relaxed text-left">
                                 - عمر بن الخطاب رضي الله عنه -
                             </p>
                         </div>
@@ -85,11 +85,11 @@
                     <div
                         class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent  rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-yellow-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed text-justify">
                                 «الشباب هم الطاقة الحقيقية والقوة الحقيقية لتحقيق هذه الرؤية، وأهم ميزة لدينا هي أن
                                 شبابنا واعٍ ومثقف ومبدع ولديه قيم عالية.»
                             </p>
-                            <p class="text-gray-800  text-lg leading-relaxed text-left">
+                            <p class="text-gray-800 font-semibold text-lg leading-relaxed text-left">
                                 - محمد بن سلمان -
                             </p>
                         </div>
@@ -97,10 +97,10 @@
                     <div
                         class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-yellow-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
-                                كُن مقياسًا للجودة، فهناك بعض أشخاص لا يجب أن يقبلوا إلا بكل ما هو مميز.
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed text-justify">
+                                «كُن مقياسًا للجودة، فهناك بعض أشخاص لا يجب أن يقبلوا إلا بكل ما هو مميز.»
                             </p>
-                            <p class="text-gray-800  text-lg leading-relaxed text-left">
+                            <p class="text-gray-800 font-semibold text-lg leading-relaxed text-left">
                                 - ستيف جوبز -
                             </p>
                         </div>
