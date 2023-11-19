@@ -31,23 +31,22 @@
                         class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div>
                             <p class="mt-4 font-uthmanicHafs text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
-                                «قُلۡ هُوَ ٱللَّهُ أَحَدٌ (1) ٱللَّهُ ٱلصَّمَدُ (2) لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ (3)
-                                وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ (4)»
+                                «قُلۡ هُوَ ٱللَّهُ أَحَدٌ (1) ٱللَّهُ ٱلصَّمَدُ (2) لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ (3) وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدُۢ (4)»
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">-
-                                سورة الإخلاص
-                                -</p>
+                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                                - سورة الإخلاص -
+                            </p>
                         </div>
                     </div>
                     <div
                         class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div>
                             <p class="mt-4 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
-                                إن في الجنة شجرة يستظل الراكب في ظلها مائة سنة واقرؤوا إن شئتم: {وَظِلٍّ مَمْدُودٍ}،
-                                ولقاب قوس أحدكم من الجنة خير مما طلعت عليه الشمس أو تغرب
+                                إن في الجنة شجرة يستظل الراكب في ظلها مائة سنة واقرؤوا إن شئتم: {وَظِلٍّ مَمْدُودٍ}، ولقاب قوس أحدكم من الجنة خير مما طلعت عليه الشمس أو تغرب
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">- متفقٌ عليهِ
-                                -</p>
+                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                                - متفقٌ عليهِ -
+                            </p>
                         </div>
                     </div>
                     <div
@@ -56,22 +55,20 @@
                             <p class="mt-4 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
                                 عليكم بذكر الله تعالى فإنه دواء وإياكم وذكر الناس فإنه داء.
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">- عمر بن
-                                الخطاب
-                                رضي الله عنه
-                                -</p>
+                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                                - عمر بن الخطاب رضي الله عنه -
+                            </p>
                         </div>
                     </div>
                     <div
                         class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div>
                             <p class="mt-4 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
-                                «الشباب هم الطاقة الحقيقية والقوة الحقيقية لتحقيق هذه الرؤية، وأهم ميزة لدينا هي أن
-                                شبابنا واعٍ ومثقف ومبدع ولديه قيم عالية.»
+                                «الشباب هم الطاقة الحقيقية والقوة الحقيقية لتحقيق هذه الرؤية، وأهم ميزة لدينا هي أن شبابنا واعٍ ومثقف ومبدع ولديه قيم عالية.»
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">- محمد بن
-                                سلمان
-                                -</p>
+                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                                - محمد بن سلمان -
+                            </p>
                         </div>
                     </div>
                 </div>

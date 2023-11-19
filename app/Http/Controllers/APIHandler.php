@@ -61,7 +61,7 @@ class APIHandler extends Controller
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => !$extra ? "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return the number of the closest meaning if the percentage is above 50%. If the percentage is below 50%, return null."
+                    'content' => !$extra ? "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return the number of the closest meaning if the percentage is above 50%. If the percentage is below 50%, return -1. the result should aways be a number only no matter what."
                         : "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return a JSON response in the following format:
 
                         ```json
