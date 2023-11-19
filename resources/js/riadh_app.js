@@ -35,7 +35,7 @@ export default () => ({
         window.riadh_app.currentWord = window.riadh_app.info.word
         console.log('window.riadh_app.info:', window.riadh_app.info)
 
-        fetch('https://mo3jam-extension.gammacodes.com/api/entry/process', {
+        fetch('https://dictionary.gammacodes.com/api/entry/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default () => ({
 
 
         window.riadh_app.secondRequestLoading = true
-        fetch('https://mo3jam-extension.gammacodes.com/api/entry/process', {
+        fetch('https://dictionary.gammacodes.com/api/entry/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
