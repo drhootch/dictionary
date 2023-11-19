@@ -9,7 +9,7 @@
         class="font-tajawal text-right pointer-events-auto transition-all absolute w-[250px] flex flex-col gap-2 items-end max-w-[15.44rem] mx-auto p-2.5 bg-white border-teal-600 border border-solid rounded-[0.63rem] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.3)]">
         <div class="flex  flex-row justify-between items-center w-full">
             <button class="flex flex-row gap-1.5 items-center">
-                <p class="block text-right text-teal-600 " xyz-text="info.word"></p>
+                <p class="block text-right font-semibold text-teal-600 " xyz-text="info.word"></p>
                 <img src="assets/audio.svg" alt="استمع إلى الكلمة">
             </button>
             <button class="flex flex-row gap-1 items-center">
