@@ -20,13 +20,13 @@
     </style>
 </head>
 
-<body class="antialiased bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900">
+<body class="antialiased bg-dots-darker bg-center bg-gray-100">
 
     <div class="flex justify-between max-w-7xl mx-auto p-6 px-8 sm:items-center">
-        <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
+        <div class="text-center text-sm text-gray-500 sm:text-left">
             <div class="flex items-center gap-4">
                 <a href="https://dictionary.ksaa.gov.sa/"
-                    class="group gap-2 inline-flex items-center hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    class="group gap-2 inline-flex items-center hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
 
                     <svg width="178" height="49" viewBox="0 0 178 49" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_59_6866)">
@@ -271,10 +271,10 @@
             </div>
         </div>
 
-        <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
+        <div class="text-center text-sm text-gray-500 sm:text-right">
             <div class="flex items-center gap-4">
                 <a href="https://arabicthon.ksaa.gov.sa/"
-                    class="group gap-2 inline-flex items-center hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    class="group gap-2 inline-flex items-center hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
 
                     <svg width="174" height="53" viewBox="0 0 174 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -336,47 +336,47 @@
             <div class="mt-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     <div
-                        class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent  rounded-lg shadow-2xl shadow-gray-500/20  flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
                                 إن في الجنة شجرة يستظل الراكب في ظلها مائة سنة واقرؤوا إن شئتم: {وَظِلٍّ مَمْدُودٍ}،
                                 ولقاب قوس أحدكم من الجنة خير مما طلعت عليه الشمس أو تغرب
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                            <p class="text-gray-800  text-lg leading-relaxed text-left">
                                 - متفقٌ عليهِ -
                             </p>
                         </div>
                     </div>
                     <div
-                        class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent  rounded-lg shadow-2xl shadow-gray-500/20  flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
                                 عليكم بذكر الله تعالى فإنه دواء وإياكم وذكر الناس فإنه داء.
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                            <p class="text-gray-800  text-lg leading-relaxed text-left">
                                 - عمر بن الخطاب رضي الله عنه -
                             </p>
                         </div>
                     </div>
                     <div
-                        class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent  rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
                                 «الشباب هم الطاقة الحقيقية والقوة الحقيقية لتحقيق هذه الرؤية، وأهم ميزة لدينا هي أن
                                 شبابنا واعٍ ومثقف ومبدع ولديه قيم عالية.»
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                            <p class="text-gray-800  text-lg leading-relaxed text-left">
                                 - محمد بن سلمان -
                             </p>
                         </div>
                     </div>
                     <div
-                        class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                         <div class="w-full flex flex-col justify-between">
-                            <p class="mt-4 text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+                            <p class="mt-4 text-gray-800  text-lg leading-relaxed">
                                 كُن مقياسًا للجودة، فهناك بعض أشخاص لا يجب أن يقبلوا إلا بكل ما هو مميز.
                             </p>
-                            <p class="text-gray-800 dark:text-gray-200 text-lg leading-relaxed text-left">
+                            <p class="text-gray-800  text-lg leading-relaxed text-left">
                                 - ستيف جوبز -
                             </p>
                         </div>
@@ -385,10 +385,10 @@
             </div>
 
             <div class="flex mt-16 px-0 sm:items-center justify-between">
-                <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
+                <div class="text-center text-sm text-gray-500 sm:text-left">
                     <div class="flex items-center gap-4">
                         <a href="https://github.com/drhootch/dictionary"
-                            class="group gap-2 inline-flex items-center hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                            class="group gap-2 inline-flex items-center hover:text-gray-700  focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
 
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="white"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -402,7 +402,7 @@
                     </div>
                 </div>
 
-                <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0">
+                <div class="ml-4 text-center text-sm text-gray-500  sm:text-right sm:ml-0">
                     تطوير فريق رياض اللّغة
                 </div>
             </div>
