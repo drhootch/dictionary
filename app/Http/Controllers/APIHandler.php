@@ -12,15 +12,19 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class APIHandler extends Controller
 {
-
     public function processEntry(Request $request)
     {
         $context = $request->context;
+        $extra = $request->extra == 1;
 
         try {
             $word = $this->lemmatize($request->word)[0];
         } catch (\Throwable $th) {
             return response()->json([
+                'context' => $context,
+                'word' => $request->word,
+                'lemma' => $word,
+                'extra' => $extra,
                 'meanings' => [],
                 'ai' => [],
                 'error' => 'لم يتم العثور على أصل الكلمة المطلوبة'
@@ -35,29 +39,35 @@ class APIHandler extends Controller
             return response()->json($entry);
         }
 
-        $entries = $this->exactSearch($word);
+        try {
+            $entries = $this->exactSearch($word);
 
-        $meanings = array();
-        foreach ($entries as $entry) {
-            foreach ($entry['senses'] as $sense) {
-                foreach ($sense['definition']['textRepresentations'] as $textRepresentation) {
-                    $meanings[] = $textRepresentation['form'];
+            $meanings = array();
+            foreach ($entries as $entry) {
+                foreach ($entry['senses'] as $sense) {
+                    foreach ($sense['definition']['textRepresentations'] as $textRepresentation) {
+                        $meanings[] = $textRepresentation['form'];
+                    }
                 }
             }
-        }
 
-        // filter only $meanings that are not empty
-        $meanings = array_filter($meanings);
+            // filter only $meanings that are not empty
+            $meanings = array_filter($meanings);
 
-        if (count($meanings) === 0) {
+            if (count($meanings) === 0) {
+                throw new \Exception("No meanings found for the word $word");
+            }
+        } catch (\Throwable $th) {
             return response()->json([
+                'context' => $context,
+                'word' => $request->word,
+                'lemma' => $word,
+                'extra' => $extra,
                 'meanings' => [],
                 'ai' => [],
                 'error' => 'لم يتم العثور على الكلمة في معجم الرياض.'
             ]);
         }
-
-        $extra = $request->extra == 1;
 
         $result = OpenAI::chat()->create([
             'model' => 'gpt-4-1106-preview',
@@ -103,23 +113,16 @@ class APIHandler extends Controller
             ],
         ]);
 
-        $ai = /* !$extra ?
-            ['analysis' => [
-                [
-                    'meaningNumber' => $result->choices[0]->message->content,
-                ]
-            ]]
-            :  */
-            json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
+        $ai = json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
 
         $response = [
-            'context' => $request->context,
+            'context' => $context,
             'word' => $request->word,
             'lemma' => $word,
+            'extra' => $extra,
             'meanings' => $meanings,
             'ai' => $ai,
             'error' => null,
-            'extra' => $extra
         ];
 
         // create a new entry in the database if it doesn't exist
@@ -133,62 +136,6 @@ class APIHandler extends Controller
         }
 
         return response()->json($response);
-    }
-
-    public function getEntry(Request $request)
-    {
-        $word = $request->word;
-
-        if ($request->lemma == 1)
-            $word = $this->lemmatize($request->word)[0];
-
-        $records = $this->exactSearch($word);
-        return response()->json($records);
-    }
-
-    public function getLemma(Request $request)
-    {
-        return $this->lemmatize($request->word);
-    }
-
-
-    /* Used for test purposes to compare results & lemmatization */
-    public function summary(Request $request)
-    {
-        $client = new Client([
-            'base_uri' => 'https://dictionary.ksaa.gov.sa/',
-        ]);
-
-        $headers = [
-            'User-Agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0',
-            'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-            'Accept-Language' => 'en-US,en;q=0.5',
-            'Accept-Encoding' => 'gzip, deflate, br',
-            'DNT' => '1',
-            'Connection' => 'keep-alive',
-            'Upgrade-Insecure-Requests' => '1',
-            'Sec-Fetch-Dest' => 'document',
-            'Sec-Fetch-Mode' => 'navigate',
-            'Sec-Fetch-Site' => 'none',
-            'Sec-Fetch-User' => '?1',
-            'Sec-GPC' => '1',
-            'Pragma' => 'no-cache',
-            'Cache-Control' => 'no-cache',
-        ];
-
-        $response = $client->request('GET', '/result/' . $request->word, [
-            'headers' => $headers,
-        ]);
-
-
-        $body = $response->getBody();
-        $html = $body->getContents();
-
-        $crawler = new Crawler($html);
-
-        $scriptContent = $crawler->filter('script#__NEXT_DATA__')->text();
-
-        return response()->json(['data' => json_decode(html_entity_decode($scriptContent, ENT_NOQUOTES, 'UTF-8'))]);
     }
 
     /*****************************************************************
@@ -217,15 +164,15 @@ class APIHandler extends Controller
         }
     }
 
-    // Keep only the arabic text and remove diactritics and non standard letters
-    function removeDiactritics($text)
-    {
-        return preg_replace('/[^ء-ي]/u', '', $text);
-    }
-
+    /**
+     * Perform an exact search using the Siwar API.
+     *
+     * @param string $keyword The keyword to search for.
+     * @return array The search results.
+     * @throws \Exception When there is an error response or a request exception.
+     */
     public function exactSearch($keyword)
     {
-
         $client = new Client();
 
         try {
@@ -238,18 +185,17 @@ class APIHandler extends Controller
                 ]
             ]);
 
-            // Check if the status code is 200
+            // Check if the status code is 200 then return the results
             if ($response->getStatusCode() == 200) {
                 $records = $response->getBody()->getContents();
                 return json_decode($records, true);
             } else {
-                //echo "Error: " . $response->getStatusCode();
+                // Handle error response
+                throw new \Exception("Error: " . $response->getStatusCode());
             }
         } catch (RequestException $e) {
-            // This will catch all exceptions
-            //echo $e->getMessage();
+            // Handle request exception
+            throw new \Exception($e->getMessage());
         }
-
-        return [];
     }
 }
