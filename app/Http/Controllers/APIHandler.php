@@ -69,8 +69,8 @@ class APIHandler extends Controller
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => !$extra ? "As a linguistic expert, leverage your expertise to analyze the Arabic word enclosed between {\$& and &\$} within the provided contextual text. Return the number corresponding to the closest labeled meaning if the confidence percentage is above 50%. If the confidence percentage is below 50%, return -1. Ensure that the output consistently represents the closest meaning as a numerical value."
-                        : "As a linguistic expert, leverage your expertise to analyze the Arabic word enclosed between {\$& and &\$} within the provided contextual text. Return the number corresponding to the closest labeled meaning. Return a JSON response in the following format:
+                    'content' =>
+                    "As a linguistic expert, leverage your expertise to analyze the Arabic word enclosed between {\$& and &\$} within the provided contextual text. Return the number corresponding to the closest labeled meaning for the enclosed word in that context. Return a JSON response in the following format:
 
                         ```json
                         {
@@ -78,15 +78,19 @@ class APIHandler extends Controller
                                 // array of meanings
                                 {
                                     \"meaningNumber\": meaningNumber,
-                                    \"percentage\": percentage,
-                                    \"explanation\": \"In-depth linguistic analysis of the meaning. the explanation should be in Arabic\"
+                                    \"percentage\": \"percentage in number of how close the meaning is to the provided context for the enclosed word\",
+                                    " . (!$extra ? "" : "
+                                    \"explanation\": \"A very brief explanation of the analysis. the explanation should be in Arabic\"
+                                    ") . "
                                 }
                             ],
+                            " . (!$extra ? "" : "
                             \"suggestion\": {
                                 \"meaning\": \"Suggested meaning in Arabic based on linguistic expertise\",
                                 \"explanation\": \"Detailed linguistic reasoning behind the suggestion. the explanation should be in Arabic\"
                             },
                             \"reformattedContext\": \"Reformulated context maintaining linguistic precision and ensuring the word's unaltered use\"
+                            ") . "
                         }
                         ```
                         "
@@ -104,13 +108,14 @@ class APIHandler extends Controller
             ],
         ]);
 
-        $ai = !$extra ?
+        $ai = /* !$extra ?
             ['analysis' => [
                 [
                     'meaningNumber' => $result->choices[0]->message->content,
                 ]
             ]]
-            : json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
+            :  */
+            json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
 
         $response = [
             'context' => $request->context,
@@ -118,16 +123,19 @@ class APIHandler extends Controller
             'lemma' => $word,
             'meanings' => $meanings,
             'ai' => $ai,
-            'error' => null
+            'error' => null,
+            'extra' => $extra
         ];
 
         // create a new entry in the database if it doesn't exist
-        $entry = \App\Models\Entry::firstOrCreate(
-            ['lemma' => $word, 'context_hash' => md5($context)],
-            ['context_data' => json_encode(
-                $response
-            ), 'related_entries' => json_encode($entries)]
-        );
+        if ($extra) {
+            $entry = \App\Models\Entry::firstOrCreate(
+                ['lemma' => $word, 'context_hash' => md5($context)],
+                ['context_data' => json_encode(
+                    $response
+                ), 'related_entries' => json_encode($entries)]
+            );
+        }
 
         return response()->json($response);
     }
