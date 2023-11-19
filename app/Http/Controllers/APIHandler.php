@@ -99,7 +99,7 @@ class APIHandler extends Controller
         $ai = !$extra ?
             ['analysis' => [
                 [
-                    'meaningNumber' => 1,
+                    'meaningNumber' => $result->choices[0]->message->content,
                 ]
             ]]
             : json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
