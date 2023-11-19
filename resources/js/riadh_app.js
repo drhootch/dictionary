@@ -24,7 +24,7 @@ export default () => ({
         return window.riadh_app.answer?.ai?.analysis?.[0].meaningNumber && (window.riadh_app.answer?.ai?.analysis?.[0].percentage >= 50 || !window.riadh_app.answer?.ai?.analysis?.[0].percentage)
     },
     fetchMeaning: () => {
-        if(window.riadh_app.currentWord === window.riadh_app.info.word) {
+        if (window.riadh_app.currentWord === window.riadh_app.info.word) {
             return
         }
         window.riadh_app.showOtherMeanings = false
@@ -49,19 +49,19 @@ export default () => ({
             .then(response => response.json())
             .then(data => {
                 window.riadh_app.loading = false
-                if(window.riadh_app.currentWord !== data.word) {
+                if (window.riadh_app.currentWord !== data.word) {
                     return
                 }
-                if(data?.ai?.analysis?.length) {
+                if (data?.ai?.analysis?.length) {
                     data.ai.analysis.sort((a, b) => b.percentage - a.percentage)
                 }
-                window.riadh_app.answer =  data
+                window.riadh_app.answer = data
                 console.log('Success:', window.riadh_app.answer)
             });
 
 
-            window.riadh_app.secondRequestLoading = true
-        fetch('http://mo3jam.test/api/entry/process', {
+        window.riadh_app.secondRequestLoading = true
+        fetch('https://mo3jam-extension.gammacodes.com/api/entry/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -76,13 +76,13 @@ export default () => ({
             .then(data => {
                 window.riadh_app.loading = false
                 window.riadh_app.secondRequestLoading = false
-                if(window.riadh_app.currentWord !== data.word || (window.riadh_app.currentWord == data.word && window.riadh_app.answer?.extra)) {
+                if (window.riadh_app.currentWord !== data.word || (window.riadh_app.currentWord == data.word && window.riadh_app.answer?.extra)) {
                     return
                 }
-                if(data?.ai?.analysis?.length) {
+                if (data?.ai?.analysis?.length) {
                     data.ai.analysis.sort((a, b) => b.percentage - a.percentage)
                 }
-                window.riadh_app.answer =  data
+                window.riadh_app.answer = data
                 console.log('Success:', window.riadh_app.answer)
             });
     },

@@ -4,11 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Str;
-use Auth;
-use DB;
-use Validator;
-
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use OpenAI\Laravel\Facades\OpenAI;
@@ -199,12 +194,6 @@ class APIHandler extends Controller
     /*****************************************************************
      *  Helpers & API Callers
      *****************************************************************/
-
-    // The context is hashed in md5
-    function getCachedResponse($lemma, $hash)
-    {
-        return false;
-    }
 
     // maybe add a pos checking if verbs
     public function lemmatize($text)
