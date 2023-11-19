@@ -32,6 +32,14 @@ class APIHandler extends Controller
             ]);
         }
 
+        // if enrty exists in the database, return it
+        $entry = \App\Models\Entry::where('lemma', $word)->where('context_hash', md5($context))->first();
+        if ($entry) {
+            $entry = json_decode($entry->context_data, true);
+            $entry['error'] = null;
+            return response()->json($entry);
+        }
+
         $entries = $this->exactSearch($word);
 
         $meanings = array();
@@ -43,7 +51,7 @@ class APIHandler extends Controller
             }
         }
 
-        //filter only $meanings that are not empty
+        // filter only $meanings that are not empty
         $meanings = array_filter($meanings);
 
         if (count($meanings) === 0) {
@@ -61,8 +69,8 @@ class APIHandler extends Controller
             'messages' => [
                 [
                     'role' => 'system',
-                    'content' => !$extra ? "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return the number of the closest meaning if the percentage is above 50%. If the percentage is below 50%, return -1. the result should aways be a number only no matter what."
-                        : "As a linguistic expert, analyze the provided word in Arabic, its labeled meanings, and the accompanying text. Return a JSON response in the following format:
+                    'content' => !$extra ? "As a linguistic expert, leverage your expertise to analyze the Arabic word enclosed between {\$& and &\$} within the provided contextual text. Return the number corresponding to the closest labeled meaning if the confidence percentage is above 50%. If the confidence percentage is below 50%, return -1. Ensure that the output consistently represents the closest meaning as a numerical value."
+                        : "As a linguistic expert, leverage your expertise to analyze the Arabic word enclosed between {\$& and &\$} within the provided contextual text. Return the number corresponding to the closest labeled meaning. Return a JSON response in the following format:
 
                         ```json
                         {
@@ -104,14 +112,24 @@ class APIHandler extends Controller
             ]]
             : json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
 
-        return response()->json([
+        $response = [
             'context' => $request->context,
             'word' => $request->word,
             'lemma' => $word,
             'meanings' => $meanings,
             'ai' => $ai,
             'error' => null
-        ]);
+        ];
+
+        // create a new entry in the database if it doesn't exist
+        $entry = \App\Models\Entry::firstOrCreate(
+            ['lemma' => $word, 'context_hash' => md5($context)],
+            ['context_data' => json_encode(
+                $response
+            ), 'related_entries' => json_encode($entries)]
+        );
+
+        return response()->json($response);
     }
 
     public function getEntry(Request $request)

@@ -28,7 +28,10 @@ function getSelectionInfo(event) {
     var boundingRect;
     var selection = window.getSelection();
     var range = selection.getRangeAt(0);
-    var context = range.commonAncestorContainer.data;
+    console.log("selection: ", selection)
+    console.log("range: ", range)
+    var context = range.commonAncestorContainer.data.substring(0, range.startOffset) + '{$&' + range.commonAncestorContainer.data.substring(range.startOffset, range.endOffset) + '&$} ' + range.commonAncestorContainer.data.substring(range.endOffset).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+    console.log("context: ", context)
 
     if (window.getSelection().toString().length > 1) {
         word = window.getSelection().toString();
