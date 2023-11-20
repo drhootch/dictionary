@@ -15,7 +15,7 @@ https://arabicthon.ksaa.gov.sa/
 
 صفحة محاكاة الإضافة : https://dictionary.gammacodes.com
 
-منصة الإثراء : https://dictionary.gammacodes.com/admin
+منصة المتابعة والإثراء : https://dictionary.gammacodes.com/validator
 
 ## تنصيب
 
