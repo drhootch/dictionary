@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/validator/login', function () {
+    return redirect('/');
+})->name("filament.validator.auth.login");
