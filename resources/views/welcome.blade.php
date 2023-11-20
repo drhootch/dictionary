@@ -98,7 +98,7 @@
                         class="scale-100 p-6 bg-white  from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-yellow-500">
                         <div class="w-full flex flex-col justify-between">
                             <p class="mt-4 text-gray-800  text-lg leading-relaxed text-justify">
-                                «كُن مقياسًا للجودة، فهناك بعض أشخاص لا يجب أن يقبلوا إلا بكل ما هو مميز.»
+                                «كُن مقياسًا للجودة، فهناك بعض الأشخاص لا يجب أن يقبلوا إلا بكل ما هو مميز.»
                             </p>
                             <p class="text-gray-800 font-semibold text-lg leading-relaxed text-left">
                                 - ستيف جوبز -
