@@ -23,7 +23,7 @@ class APIHandler extends Controller
             return response()->json([
                 'context' => $context,
                 'word' => $request->word,
-                'lemma' => $word,
+                'lemma' => "",
                 'extra' => $extra,
                 'meanings' => [],
                 'ai' => [],
