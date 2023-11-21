@@ -129,9 +129,10 @@ class APIHandler extends Controller
         if ($extra) {
             $entry = \App\Models\Entry::firstOrCreate(
                 ['lemma' => $word, 'context_hash' => md5($context)],
-                ['context_data' => json_encode(
-                    $response
-                ), 'related_entries' => json_encode($entries)]
+                [
+                    'context_data' => $response,
+                    'related_entries' => $entries
+                ]
             );
         }
 

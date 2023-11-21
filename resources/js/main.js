@@ -10,7 +10,6 @@ window.Alpine = Alpine
 
 Alpine.start()
 
-
 function showMeaning (event){
     var createdDiv,
         info = getSelectionInfo(event);
@@ -19,8 +18,6 @@ function showMeaning (event){
 
     window.riadh_app.info = info
     window.riadh_app.fetchMeaning()
-
-    console.log("info: ", info)
 }
 
 function getSelectionInfo(event) {
@@ -28,10 +25,7 @@ function getSelectionInfo(event) {
     var boundingRect;
     var selection = window.getSelection();
     var range = selection.getRangeAt(0);
-    console.log("selection: ", selection)
-    console.log("range: ", range)
     var context = range.commonAncestorContainer.data.substring(0, range.startOffset) + '{$&' + range.commonAncestorContainer.data.substring(range.startOffset, range.endOffset) + '&$} ' + range.commonAncestorContainer.data.substring(range.endOffset).replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
-    console.log("context: ", context)
 
     if (window.getSelection().toString().length > 1) {
         word = window.getSelection().toString();

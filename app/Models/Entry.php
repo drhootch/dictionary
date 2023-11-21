@@ -14,6 +14,7 @@ class Entry extends Model
 
     protected $casts = [
         'context_data' => 'json',
+        'related_entries' => 'json',
     ];
 
     public function getMeaningsAttribute()

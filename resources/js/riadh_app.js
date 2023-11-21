@@ -33,7 +33,6 @@ export default () => ({
         window.riadh_app.answer = null
         window.riadh_app.loading = true
         window.riadh_app.currentWord = window.riadh_app.info.word
-        console.log('window.riadh_app.info:', window.riadh_app.info)
 
         fetch('https://dictionary.gammacodes.com/api/entry/process', {
             method: 'POST',
@@ -56,12 +55,10 @@ export default () => ({
                     data.ai.analysis.sort((a, b) => b.percentage - a.percentage)
                 }
                 window.riadh_app.answer = data
-                console.log('Success:', window.riadh_app.answer)
             });
 
-
         window.riadh_app.secondRequestLoading = true
-        fetch('https://dictionary.gammacodes.com/api/entry/process', {
+        fetch('http://mo3jam.test/api/entry/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -83,7 +80,6 @@ export default () => ({
                     data.ai.analysis.sort((a, b) => b.percentage - a.percentage)
                 }
                 window.riadh_app.answer = data
-                console.log('Success:', window.riadh_app.answer)
             });
     },
 })
