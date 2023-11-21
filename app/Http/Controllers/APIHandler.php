@@ -129,9 +129,10 @@ class APIHandler extends Controller
         if ($extra) {
             $entry = \App\Models\Entry::firstOrCreate(
                 ['lemma' => $word, 'context_hash' => md5($context)],
-                ['context_data' => json_encode(
-                    $response
-                ), 'related_entries' => json_encode($entries)]
+                [
+                    'context_data' => $response,
+                    'related_entries' => $entries
+                ]
             );
         }
 
@@ -142,15 +143,17 @@ class APIHandler extends Controller
      *  Helpers & API Callers
      *****************************************************************/
 
-	public function getLemmatize( Request $request ){
-		return response()->json( $this->lemmatize($request->text) );
-	}
-	
+    public function getLemmatize(Request $request)
+    {
+        return response()->json($this->lemmatize($request->text));
+    }
 
-	public function getPOSTag( Request $request ){
-		return response()->json( $this->postag($request->text) );
-	}
-	
+
+    public function getPOSTag(Request $request)
+    {
+        return response()->json($this->postag($request->text));
+    }
+
     public function lemmatize($text)
     {
         $client = new Client();
@@ -171,8 +174,8 @@ class APIHandler extends Controller
             return [];
         }
     }
-	
-	// POS tagging, e.g.: checking if verb
+
+    // POS tagging, e.g.: checking if verb
     public function postag($text)
     {
         $client = new Client();

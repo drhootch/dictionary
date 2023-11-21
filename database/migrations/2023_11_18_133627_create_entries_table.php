@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('lemma');
             $table->string('context_hash');
-            $table->json('context_data');
-            $table->json('related_entries');
+            $table->longText('context_data');
+            $table->longText('related_entries');
             $table->timestamps();
         });
     }

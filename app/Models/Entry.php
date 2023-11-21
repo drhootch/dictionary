@@ -13,8 +13,8 @@ class Entry extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'context_data' => 'json',
-        'related_entries' => 'json',
+        'context_data' => 'array',
+        'related_entries' => 'array',
     ];
 
     public function getMeaningsAttribute()
