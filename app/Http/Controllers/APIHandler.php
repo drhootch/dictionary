@@ -34,9 +34,9 @@ class APIHandler extends Controller
         // if enrty exists in the database, return it
         $entry = \App\Models\Entry::where('lemma', $word)->where('context_hash', md5($context))->first();
         if ($entry) {
-            $entry = json_decode($entry->context_data, true);
-            $entry['error'] = null;
-            return response()->json($entry);
+            $context_data = $entry->context_data;
+            $context_data['error'] = null;
+            return response()->json($context_data);
         }
 
         try {
