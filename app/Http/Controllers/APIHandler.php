@@ -142,14 +142,44 @@ class APIHandler extends Controller
      *  Helpers & API Callers
      *****************************************************************/
 
-    // maybe add a pos checking if verbs
+	public function getLemmatize( Request $request ){
+		return response()->json( $this->lemmatize($request->text) );
+	}
+	
+
+	public function getPOSTag( Request $request ){
+		return response()->json( $this->postag($request->text) );
+	}
+	
     public function lemmatize($text)
     {
         $client = new Client();
-        $response = $client->request('POST', 'https://farasa.qcri.org/lemmatization/analyze/', [
+        $response = $client->request('POST', 'https://farasa.qcri.org/callQats/', [
             'form_params' => [
                 'text' => $text,
-                'task' => 'lemmatization',
+                'task' => 6,
+                'normalized' => true,
+                'API_KEY' => env('FARASA_API_KEY')
+            ]
+        ]);
+
+        if ($response->getStatusCode() == 200) {
+            $result = json_decode($response->getBody()->getContents(), true);
+            //$output = explode(" ", $result["text"]);
+            return $result;
+        } else {
+            echo "Error: " . $response->getStatusCode();
+            return [];
+        }
+    }
+	
+	// POS tagging, e.g.: checking if verb
+    public function postag($text)
+    {
+        $client = new Client();
+        $response = $client->request('POST', 'https://farasa.qcri.org/webapi/pos/', [
+            'form_params' => [
+                'text' => $text,
                 'API_KEY' => env('FARASA_API_KEY')
             ]
         ]);
@@ -163,6 +193,7 @@ class APIHandler extends Controller
             return [];
         }
     }
+
 
     /**
      * Perform an exact search using the Siwar API.
