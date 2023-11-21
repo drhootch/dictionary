@@ -58,7 +58,7 @@ export default () => ({
             });
 
         window.riadh_app.secondRequestLoading = true
-        fetch('http://mo3jam.test/api/entry/process', {
+        fetch('https://dictionary.gammacodes.com/api/entry/process', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
