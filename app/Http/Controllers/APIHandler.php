@@ -129,10 +129,9 @@ class APIHandler extends Controller
         if ($extra) {
             $entry = \App\Models\Entry::firstOrCreate(
                 ['lemma' => $word, 'context_hash' => md5($context)],
-                [
-                    'context_data' => $response,
-                    'related_entries' => $entries
-                ]
+                ['context_data' => json_encode(
+                    $response
+                ), 'related_entries' => json_encode($entries)]
             );
         }
 
@@ -155,19 +154,18 @@ class APIHandler extends Controller
     public function lemmatize($text)
     {
         $client = new Client();
-        $response = $client->request('POST', 'https://farasa.qcri.org/callQats/', [
+        $response = $client->request('POST', 'https://farasa.qcri.org/lemmatization/analyze/', [
             'form_params' => [
                 'text' => $text,
-                'task' => 6,
-                'normalized' => true,
+                'task' => 'lemmatization',
                 'API_KEY' => env('FARASA_API_KEY')
             ]
         ]);
 
         if ($response->getStatusCode() == 200) {
             $result = json_decode($response->getBody()->getContents(), true);
-            //$output = explode(" ", $result["text"]);
-            return $result;
+            $output = explode(" ", $result["text"]);
+            return $output;
         } else {
             echo "Error: " . $response->getStatusCode();
             return [];
@@ -178,17 +176,19 @@ class APIHandler extends Controller
     public function postag($text)
     {
         $client = new Client();
-        $response = $client->request('POST', 'https://farasa.qcri.org/webapi/pos/', [
+        $response = $client->request('POST', 'https://farasa.qcri.org/callQats/', [
             'form_params' => [
                 'text' => $text,
+                'task' => '6',
+                'normalized' => true,
                 'API_KEY' => env('FARASA_API_KEY')
             ]
         ]);
 
         if ($response->getStatusCode() == 200) {
             $result = json_decode($response->getBody()->getContents(), true);
-            $output = explode(" ", $result["text"]);
-            return $output;
+            //$output = explode(" ", $result["text"]);
+            return $result;
         } else {
             echo "Error: " . $response->getStatusCode();
             return [];
