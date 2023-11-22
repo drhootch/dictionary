@@ -5,7 +5,7 @@
 إضافة متصفحات الكروم
 
 رابط الشفرة:
-https://github.com/drhootch/riad-codictionary-extention
+https://github.com/drhootch/riad-codictionary-extension
 
 ## معجم الرياض
 يعتمد هذا المشروع على بيانات من معجم الرياض
