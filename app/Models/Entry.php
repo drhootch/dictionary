@@ -44,7 +44,6 @@ class Entry extends Model
         });
         $meaningsArray[0]["accepted"] = ($meaningsArray[0]["percentage"] ?? 0) >= 50;
 
-
         return $meaningsArray;
     }
 }

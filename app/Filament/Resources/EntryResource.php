@@ -13,8 +13,11 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -43,15 +46,42 @@ class EntryResource extends Resource
         return __('Discovered contexts');
     }
 
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                TextEntry::make('context_data.word')
+                    ->label("Word")
+                    ->translateLabel(),
+                TextEntry::make('lemma')
+                    ->translateLabel(),
+                TextEntry::make('context_data.context')
+                    ->label("Context")
+                    ->translateLabel()
+                    ->columnSpanFull()
+                    ->html()
+                    ->formatStateUsing(fn (string $state): string => str_replace(["{\$&", "&\$}"], ["<b>", "</b>"], $state)),
+                TextEntry::make('meanings')
+                    ->html()
+                    ->formatStateUsing(fn (array $state): string => (isset($state["percentage"]) ? ($state["percentage"] . "%. ") : "") . ($state["meaning"] ?? "") . (isset($state["explanation"]) ? ("<br><span style='color: rgb(91 33 182)'>التفصيل: " . $state["explanation"] . "</span>")  : ""))
+                    ->color(fn (array $state): string => ($state["accepted"] ?? false) ? "primary" : "black")
+                    ->label("Meanings")
+                    ->listWithLineBreaks()
+                    ->bulleted()
+                    ->translateLabel()
+                    ->columnSpanFull()
+            ]);
+    }
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('lemma')
+                Forms\Components\TextInput::make('context_data.word')
                     ->translateLabel()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('context_data.word')
+                Forms\Components\TextInput::make('lemma')
                     ->translateLabel()
                     ->required()
                     ->maxLength(255),
@@ -94,14 +124,30 @@ class EntryResource extends Resource
                 Tables\Columns\TextColumn::make('lemma')
                     ->translateLabel()
                     ->searchable(),
+                Tables\Columns\TextColumn::make('context_data.context')
+                    ->label("Context")
+                    ->html()
+                    ->translateLabel()
+                    ->formatStateUsing(fn (string $state): string => str_replace(["{\$&", "&\$}"], ["<b>", "</b>"], $state))
+                    ->wrap()
+                    ->limit(250)
+                    ->tooltip(function (TextColumn $column): ?string {
+                        $state = $column->getState();
+                        if (strlen($state) <= $column->getCharacterLimit()) {
+                            return null;
+                        }
+                        return str_replace(["{\$&", "&\$}"], "", $state);
+                    })
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('meanings')
                     //reorder meanings
                     ->formatStateUsing(fn (array $state): string => (isset($state["percentage"]) ? ($state["percentage"] . "% . ") : "") . ($state["meaning"] ?? ""))
                     ->color(fn (array $state): string => ($state["accepted"] ?? false) ? "primary" : "black")
                     ->label("Meanings")
+                    ->limit(50)
                     ->listWithLineBreaks()
                     ->bulleted()
-                    ->limitList(4)
+                    ->limitList(3)
                     ->translateLabel()
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->where('context_data->meanings', 'like', "%{$search}%");
@@ -121,6 +167,7 @@ class EntryResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
