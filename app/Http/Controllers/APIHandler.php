@@ -17,9 +17,26 @@ class APIHandler extends Controller
         $context = $request->context;
         $extra = $request->extra == 1;
 
+        $response = [
+            'context' => $context,
+            'word' => $request->word,
+            'extra' => $extra,
+            'error' => null,
+        ];
+
         try {
             $word = $this->lemmatize($request->word)[0];
+
+            $response['lemma'] = $word;
         } catch (\Throwable $th) {
+            $response['error'] = 'لم يتم العثور على أصل الكلمة المطلوبة';
+            $entry = \App\Models\Entry::firstOrCreate(
+                ['context_hash' => md5($context)],
+                [
+                    'lemma' => $word,
+                    'context_data' => $response,
+                ]
+            );
             return response()->json([
                 'context' => $context,
                 'word' => $request->word,
@@ -32,10 +49,9 @@ class APIHandler extends Controller
         }
 
         // if enrty exists in the database, return it
-        $entry = \App\Models\Entry::where('lemma', $word)->where('context_hash', md5($context))->first();
+        $entry = \App\Models\Entry::where('context_hash', md5($context))->first();
         if ($entry) {
             $context_data = $entry->context_data;
-            $context_data['error'] = null;
             return response()->json($context_data);
         }
 
@@ -57,7 +73,18 @@ class APIHandler extends Controller
             if (count($meanings) === 0) {
                 throw new \Exception("No meanings found for the word $word");
             }
+
+            $response['meanings'] = $meanings;
         } catch (\Throwable $th) {
+            $response['error'] = 'لم يتم العثور على الكلمة في معجم الرياض.';
+            $entry = \App\Models\Entry::firstOrCreate(
+                ['context_hash' => md5($context)],
+                [
+                    'lemma' => $word,
+                    'context_data' => $response,
+                    'related_entries' => $entries
+                ]
+            );
             return response()->json([
                 'context' => $context,
                 'word' => $request->word,
@@ -115,21 +142,14 @@ class APIHandler extends Controller
 
         $ai = json_decode(str_replace(["```json\n", "\n```"], "", $result->choices[0]->message->content));
 
-        $response = [
-            'context' => $context,
-            'word' => $request->word,
-            'lemma' => $word,
-            'extra' => $extra,
-            'meanings' => $meanings,
-            'ai' => $ai,
-            'error' => null,
-        ];
+        $response['ai'] = $ai;
 
         // create a new entry in the database if it doesn't exist
         if ($extra) {
             $entry = \App\Models\Entry::firstOrCreate(
-                ['lemma' => $word, 'context_hash' => md5($context)],
+                ['context_hash' => md5($context)],
                 [
+                    'lemma' => $word,
                     'context_data' => $response,
                     'related_entries' => $entries
                 ]

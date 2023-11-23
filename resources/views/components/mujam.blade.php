@@ -74,7 +74,7 @@
                 <div class="w-full h-[1px] opacity-50 bg-teal-600 mt-1 mb-1"></div>
                 <p class="block w-full text-xs text-neutral-500 ">معاني أخرى:</p>
                 <template
-                    xyz-for="meaning in answer?.meanings.filter((m,i)=>i!==answer?.ai?.analysis?.[0].meaningNumber-1)">
+                    xyz-for="meaning in answer?.meanings?.filter((m,i)=>(i!==answer?.ai?.analysis?.[0].meaningNumber-1 || parseInt(answer?.ai?.analysis?.[0].percentage) < 50))">
                     <p class="block w-full text-md text-black " xyz-text="'- '+meaning"></p>
                 </template>
             </div>
@@ -102,7 +102,7 @@
                     <img src="assets/thumb_down.svg" alt="إجابة غير مفيدة">
                 </div>
                 <button
-                    xyz-show="isGoodAnswer && !showOtherMeanings && answer?.meanings.filter((m,i)=>i!==answer?.ai?.analysis?.[0].meaningNumber-1).length"
+                    xyz-show="isGoodAnswer && !showOtherMeanings && answer?.meanings?.filter((m,i)=>i!==answer?.ai?.analysis?.[0].meaningNumber-1).length"
                     xyz-on:click="showOtherMeanings=true"
                     class="px-1.5 py-1 border-teal-600 border-solid border rounded-lg text-[0.63rem] text-teal-600">
                     معاني أخرى
