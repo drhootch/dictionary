@@ -29,7 +29,7 @@
                 </div>
                 <div class="text-center text-sm text-gray-500 sm:text-left flex gap-8 justify-center items-center">
                     <div class="flex items-center gap-4">
-                        <a href="{{ route('filament.validator.pages.dashboard') }}"
+                        <a href="{{ route('filament.validator.resources.posts.index') }}"
                             class="group gap-2 flex items-center underline justify-center text-lg font-medium hover:text-grey-700 text-grey-600  sm:text-right sm:ml-0 focus:outline focus:outline-2 focus:rounded-sm focus:outline-yellow-500">
                             إضافة نصّ
                         </a>
@@ -103,6 +103,19 @@
                             </p>
                         </div>
                     </div>
+                    @foreach (App\Models\Post::all() as $text)
+                    <div
+                        class="min-h-fit scale-100 p-6 bg-white  from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-yellow-500">
+                        <div class="w-full flex flex-col justify-between">
+                            <p class="mt-4 text-gray-800 text-lg leading-relaxed text-justify">
+                                {{ $text->post_body }}
+                            </p>
+                            <p class="text-gray-800 font-semibold text-lg leading-relaxed text-left">
+                                - {{ $text->post_title }} -
+                            </p>
+                        </div>
+                    </div>
+                    @endforeach
                 </div>
             </div>
 

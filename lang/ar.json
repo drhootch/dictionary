@@ -29,5 +29,10 @@
     "Originality":  "الأصالة",
     "Has tanween":   "الحَسْنَوين",
     "Discovered contexts": "السياقات المكتشفة",
-    "Discovered context": "السياق المكتشف"
+    "Discovered context": "السياق المكتشف",
+    "Posts": "نصوص تجريبية",
+    "Post": "نص تجريبي",
+    "Post title": "المصدر",
+    "Post body": "محتوى النص",
+    "State": "الحالة"
 }
