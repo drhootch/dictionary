@@ -1,3 +1,9 @@
+<IfModule Litespeed> 
+    RewriteEngine On
+    RewriteRule SCRIPT_URL - [E=noabort:1, E=noconntimeout:1]
+</IfModule>
+
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
