@@ -23,7 +23,7 @@ Route::any('entry/process', 'App\Http\Controllers\APIHandler2@processEntry');
 
 
 
-Route::any('task/lemmatize', 'App\Http\Controllers\APIHandler2@getLemmatize');
+Route::any('task/lemmatize', 'App\Http\Controllers\APIHandler@getLemmatize');
 
 Route::any('task/postag', 'App\Http\Controllers\APIHandler@getPOSTag');
 
