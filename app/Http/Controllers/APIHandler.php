@@ -81,8 +81,7 @@ class APIHandler extends Controller
                 ['context_hash' => md5($context)],
                 [
                     'lemma' => $word,
-                    'context_data' => $response,
-                    'related_entries' => $entries
+                    'context_data' => $response
                 ]
             );
             return response()->json([

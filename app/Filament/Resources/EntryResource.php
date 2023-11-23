@@ -116,7 +116,8 @@ class EntryResource extends Resource
                     ->translateLabel()
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->where('context_data->word', 'like', "%{$search}%");
-                    }),
+                    })
+                    ->color(fn (Entry $record): string => $record->context_data->error ?? false ? 'danger' : 'default'),
                 Tables\Columns\TextColumn::make('lemma')
                     ->translateLabel()
                     ->searchable(),
@@ -133,8 +134,7 @@ class EntryResource extends Resource
                             return null;
                         }
                         return str_replace(["{\$&", "&\$}"], "", $state);
-                    })
-                    ->searchable(),
+                    }),
                 Tables\Columns\TextColumn::make('meanings')
                     //reorder meanings
                     ->formatStateUsing(fn (array $state): string => (isset($state["percentage"]) ? ($state["percentage"] . "% . ") : "") . ($state["meaning"] ?? ""))
