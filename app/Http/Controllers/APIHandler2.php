@@ -36,6 +36,7 @@ class APIHandler2 extends Controller
 		
 		foreach($words as $word){
 			// if enrty exists in the database, return it
+			//$entry = \App\Models\Entry::where('lemma', $word)->where('context_hash', md5($context))->first();
 			$entry = \App\Models\Entry::where('lemma', $word)->where('context_hash', md5($context))->first();
 			if ($entry) {
 				$context_data = $entry->context_data;
@@ -130,11 +131,11 @@ class APIHandler2 extends Controller
                     'content' => "
                             word: $word
 
-                            meanings: ".json_encode($meanings_adv)."
-
+                            meanings: [\"" . implode('","', $meanings) . "\"]
                             context: $context
                             "
                 ],
+                //meanings: ".json_encode($meanings_adv)."
                 //meanings: [\"" . implode('","', $meanings) . "\"]
             ],
         ]);

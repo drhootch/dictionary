@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Get entry from database if cached or from API if not
-Route::any('entry/process', 'App\Http\Controllers\APIHandler@processEntry');
+Route::any('entry/process', 'App\Http\Controllers\APIHandler2@processEntry');
 
 
 
