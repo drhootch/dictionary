@@ -24,9 +24,10 @@
     <div class="h-screen flex flex-col  selection:bg-yellow-500">
         <div class="w-full max-w-7xl mx-auto p-6 lg:p-8">
             <div class="flex mb-4 sm:items-center justify-between">
-                <div class="ml-4 text-center text-lg font-bold text-teal-600  sm:text-right sm:ml-0">
-                    رياض اللّغة
-                </div>
+                <a href="https://chromewebstore.google.com/u/1/detail/%D8%B1%D9%8A%D8%A7%D8%B6-%D8%A7%D9%84%D9%84%D8%BA%D8%A9/jhjgjegpannnpjedhopbgboihdokeplc?hl=en"
+                    class="ml-4 text-center text-lg font-bold text-teal-600  sm:text-right sm:ml-0">
+                    تحميل إضافة رياض اللّغة من المتجر
+                </a>
                 <div class="text-center text-sm text-gray-500 sm:text-left flex gap-8 justify-center items-center">
                     <div class="flex items-center gap-4">
                         <a href="{{ route('filament.validator.resources.posts.index') }}"
